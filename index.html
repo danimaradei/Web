@@ -461,28 +461,29 @@
       <div class="reveal">
         <div class="form-card">
           <div class="form-title">Escribinos</div>
-          <div class="contact-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Nombre</label>
-                <input type="text" class="form-input" placeholder="Tu nombre" />
+            <form class="contact-form" action="https://formsubmit.co/seds@itba.edu.ar" method="POST">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://seds-itba.vercel.app/">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Nombre</label>
+                  <input type="text" name="nombre" class="form-input" placeholder="Tu nombre" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Carrera</label>
+                  <input type="text" name="carrera" class="form-input" placeholder="Ej: Ing. Mecánica" />
+                </div>
               </div>
               <div class="form-group">
-                <label class="form-label">Carrera</label>
-                <input type="text" class="form-input" placeholder="Ej: Ing. Mecánica" />
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-input" placeholder="nombre@itba.edu.ar" required />
               </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-input" placeholder="nombre@itba.edu.ar" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Mensaje</label>
-              <textarea class="form-textarea" placeholder="¿En qué área te interesa participar?"></textarea>
-            </div>
-            <button class="btn-form" onclick="submitForm()">Enviar mensaje</button>
-            <div class="form-success" id="formSuccess">✓ Mensaje recibido — ¡pronto te contactamos!</div>
-          </div>
+              <div class="form-group">
+                <label class="form-label">Mensaje</label>
+                <textarea name="mensaje" class="form-textarea" placeholder="¿En qué área te interesa participar?"></textarea>
+              </div>
+              <button type="submit" class="btn-form">Enviar mensaje</button>
+            </form>
         </div>
       </div>
     </div>
