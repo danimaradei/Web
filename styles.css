@@ -65,13 +65,11 @@ nav.scrolled { border-bottom-color: var(--rule); }
   gap: 0.5rem;
 }
 
-/* when using an image logo, ensure it fits nicely */
 .nav-logo-img {
   display: block;
-  height: 1.5rem; /* adjust as needed */
+  height: 1.2rem;
   width: auto;
 }
-
 .logo-dot {
   width: 8px; height: 8px;
   border-radius: 50%;
@@ -119,6 +117,75 @@ nav.scrolled { border-bottom-color: var(--rule); }
 }
 
 .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* hamburger button for mobile */
+.nav-toggle {
+  display: none; /* shown via media query */
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+}
+
+.nav-toggle .hamburger {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 24px; height: 2px;
+  background: var(--white);
+  transform: translate(-50%, -50%);
+  transition: background 0.3s;
+}
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+  content: '';
+  position: absolute;
+  width: 24px; height: 2px;
+  background: var(--white);
+  transition: transform 0.3s;
+}
+.nav-toggle .hamburger::before { top: -6px; }
+.nav-toggle .hamburger::after  { top: 6px; }
+
+.nav-toggle.open .hamburger {
+  background: transparent;
+}
+.nav-toggle.open .hamburger::before {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav-toggle.open .hamburger::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* responsive nav-links dropdown */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--surface2);
+    flex-direction: column;
+    gap: 0;
+    display: none;          /* hide by default */
+  }
+
+  .nav-links li {
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .nav-links.mobile-active {
+    display: flex;          /* show when active */
+  }
+
+  .nav-cta {
+    display: none; /* optional: hide CTA on mobile, could be included inside menu if desired */
+  }
+}
 
 /* ── HERO ────────────────────────────────────── */
 #hero {
@@ -177,20 +244,12 @@ nav.scrolled { border-bottom-color: var(--rule); }
   animation: fadeUp 0.9s ease 0.5s forwards;
 }
 
-/* if the hero title is an image instead of text */
 .hero-title-img {
   display: block;
-  max-width: 100%;
-  max-height: 8rem; /* limit height so logo doesn’t blow up */
+  width: 100%;
+  max-width: 600px;
   height: auto;
   margin: 0 auto;
-}
-
-/* tweak nav logo size too in case it’s still big */
-.nav-logo-img {
-  display: block;
-  height: 1.2rem; /* slightly smaller for nav */
-  width: auto;
 }
 
 .hero-title .gradient-text {

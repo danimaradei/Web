@@ -63,3 +63,24 @@ window.addEventListener('scroll', () => {
     a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--violet-l)' : '';
   });
 });
+
+/* ── MOBILE HAMBURGER ───────────────────────── */
+const toggleBtn = document.querySelector('.nav-toggle');
+const navList = document.querySelector('.nav-links');
+if (toggleBtn && navList) {
+  toggleBtn.addEventListener('click', () => {
+    console.log('hamburger clicked');
+    navList.classList.toggle('mobile-active');
+    toggleBtn.classList.toggle('open');
+  });
+
+  // close menu when a link is tapped (useful on mobile)
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      if (navList.classList.contains('mobile-active')) {
+        navList.classList.remove('mobile-active');
+        toggleBtn.classList.remove('open');
+      }
+    });
+  });
+}
