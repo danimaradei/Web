@@ -84,3 +84,88 @@ if (toggleBtn && navList) {
     });
   });
 }
+
+/* ── CANSAT CAROUSEL ─────────────────────────── */
+(function () {
+  const track = document.getElementById('cansatTrack');
+  const dotsContainer = document.getElementById('cansatDots');
+  const prevBtn = document.getElementById('cansatPrev');
+  const nextBtn = document.getElementById('cansatNext');
+  if (!track) return;
+
+  const slides = track.querySelectorAll('.carousel-slide');
+  let current = 0;
+  const total = slides.length;
+
+  // Clonar primera y última slide para efecto bucle infinito
+  const firstClone = slides[0].cloneNode(true);
+  const lastClone = slides[total - 1].cloneNode(true);
+  track.appendChild(firstClone);
+  track.insertBefore(lastClone, slides[0]);
+
+  // Empezar en la segunda posición (la primera real)
+  let pos = 1;
+  track.style.transition = 'none';
+  track.style.transform = `translateX(-${pos * 100}%)`;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Ir a foto ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i + 1, i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function updateDots(realIndex) {
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === realIndex);
+    });
+  }
+
+  function goTo(newPos, dotIndex) {
+    pos = newPos;
+    current = dotIndex;
+    track.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+    track.style.transform = `translateX(-${pos * 100}%)`;
+    updateDots(current);
+  }
+
+  // Al terminar la transición, hacer el salto invisible si estamos en un clon
+  track.addEventListener('transitionend', () => {
+    if (pos === 0) {
+      track.style.transition = 'none';
+      pos = total;
+      current = total - 1;
+      track.style.transform = `translateX(-${pos * 100}%)`;
+      updateDots(current);
+    }
+    if (pos === total + 1) {
+      track.style.transition = 'none';
+      pos = 1;
+      current = 0;
+      track.style.transform = `translateX(-${pos * 100}%)`;
+      updateDots(current);
+    }
+  });
+
+  prevBtn.addEventListener('click', () => goTo(pos - 1, (current - 1 + total) % total));
+  nextBtn.addEventListener('click', () => goTo(pos + 1, (current + 1) % total));
+
+  let autoplay = setInterval(() => goTo(pos + 1, (current + 1) % total), 4000);
+  [prevBtn, nextBtn].forEach(btn => {
+    btn.addEventListener('click', () => {
+      clearInterval(autoplay);
+      autoplay = setInterval(() => goTo(pos + 1, (current + 1) % total), 4000);
+    });
+  });
+
+  let startX = 0;
+  track.parentElement.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.parentElement.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      const dir = diff > 0 ? 1 : -1;
+      goTo(pos + dir, (current + dir + total) % total);
+    }
+  });
+})();
