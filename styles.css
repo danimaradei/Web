@@ -187,6 +187,11 @@ nav.scrolled { border-bottom-color: var(--rule); }
   }
 }
 
+p strong {
+  font-weight: 700;
+  color: var(--off-white);
+}
+
 /* ── HERO ────────────────────────────────────── */
 #hero {
   position: relative;
