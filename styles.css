@@ -665,7 +665,34 @@ p strong {
 .event-desc {
   font-size: 0.82rem;
   line-height: 1.65;
-  color: var(--muted);
+  color: var(--off-white);
+}
+
+.event-btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--violet), var(--indigo));
+  border: none;
+  box-shadow: 0 0 16px rgba(124,58,237,0.35);
+  text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 3px;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.event-btn:hover {
+  background: rgba(37,99,235,0.12);
+  border-color: var(--blue-l);
+  transform: translateY(-1px);
+  opacity: 0.85;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(124,58,237,0.5);
 }
 
 /* ── TEAM ────────────────────────────────────── */
