@@ -13,7 +13,7 @@ const statsObserver = new IntersectionObserver((entries) => {
     const step = Math.ceil(target / 45);
     const iv = setInterval(() => {
       cur = Math.min(cur + step, target);
-      el.textContent = cur + (target >= 20 ? '+' : '');
+      el.textContent = cur + (el.dataset.suffix || '');
       if (cur >= target) clearInterval(iv);
     }, 28);
   });
