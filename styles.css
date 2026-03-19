@@ -594,6 +594,107 @@ p strong {
   line-height: 1.5;
 }
 
+/* ── BENTO GRID (ABOUT) ──────────────────────── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.bento-mission {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 2.8rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bento-mission::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--violet), var(--blue));
+}
+
+.bento-mission::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.bento-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.bento-pillar {
+  background: var(--surface2);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.bento-pillar:hover {
+  border-color: rgba(124,58,237,0.4);
+  box-shadow: 0 6px 24px rgba(124,58,237,0.12);
+  transform: translateY(-3px);
+}
+
+.bento-pillar .pillar-icon {
+  font-size: 1.5rem;
+  width: auto;
+  height: auto;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 0.2rem;
+}
+
+.bento-pillar .pillar-title {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.bento-pillar .pillar-text {
+  font-size: 0.75rem;
+  color: var(--off-white);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-pillars {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 /* ── EVENTS ──────────────────────────────────── */
 #events { background: var(--bg); position: relative; z-index: 1; }
 
