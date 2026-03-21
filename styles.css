@@ -405,10 +405,14 @@ p strong {
   opacity: 0;
   animation: fadeUp 0.8s ease 1.1s forwards;
   flex-wrap: wrap;
+  width: 100%;
   justify-content: center;
 }
 
-.hero-stat { text-align: center; }
+.hero-stat { 
+  flex: 1;
+  max-width: 200px;
+  text-align: center; }
 
 .hero-stat-num {
   font-family: 'Exo 2', sans-serif;
@@ -429,6 +433,7 @@ p strong {
   color: var(--muted);
   margin-top: 0.35rem;
 }
+
 
 .scroll-indicator {
   position: absolute;
