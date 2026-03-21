@@ -229,7 +229,7 @@ nav.scrolled { border-bottom-color: var(--rule); }
 }
 
 /* responsive nav-links dropdown */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-toggle {
     display: block;
   }
