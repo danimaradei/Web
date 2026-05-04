@@ -1135,7 +1135,6 @@ footer {
   text-decoration: none;
   color: var(--white);
   transition: border-color 0.25s, background 0.25s, transform 0.2s;
-  margin-top: 2rem;
 }
 
 .cansat-ig-link:hover {
